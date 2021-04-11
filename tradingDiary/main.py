@@ -1,7 +1,7 @@
 import sys
 
 from PyQt5.QtWidgets import QApplication
-from .views import Window
+from tradingDiary.mainWindow import Window
 #from .database import createConnection
 from .database import TradeDiaryDB
 

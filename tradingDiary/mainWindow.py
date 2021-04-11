@@ -29,6 +29,8 @@ from .process_to_db import delta_upld
 from .dialogs import AddSymbolDialog
 from .database import get_symbols
 
+from tradingDiary.views.forecast_window import ForeCastWindow
+
 
 class openInterestUI(QWidget):
 
@@ -170,6 +172,7 @@ class Window(QMainWindow):
     self.setupLeftMenu()
     self.setupRightArea()
     self.sysOptionsMainWindow()
+    self.addForecastWindow()
 
     # initialize OI/COT window classes
     self.win_OI = None
@@ -183,11 +186,13 @@ class Window(QMainWindow):
     #self.OIdataButton.clicked.connect(lambda checked: self.toggle_window(self.win_OI))
     #self.COTdataButton.clicked.connect(lambda checked: self.toggle_window(self.win_COT))
 
+    
+
     self.OIdataButton.clicked.connect(self.toggle_OI_window)
     self.COTdataButton.clicked.connect(self.toggle_COT_window)
     self.CheckUpdatesButton.clicked.connect(self.get_updates)
-
     self.SystemOptions.clicked.connect(partial(self.switchStackedPage, 1))
+    self.BriefDealsButton.clicked.connect(partial(self.switchStackedPage, 2))
   
 
   def setupLeftMenu(self):
@@ -377,12 +382,18 @@ class Window(QMainWindow):
       else:
         self.win_COT.show()
 
-  
+    
   def get_updates(self):
     delta_upld()
 
-  #def toggle_window(self, window):
-  #  if window.isVisible():
-  #    window.hide()
-  #  else:
-  #    window.show()
+
+  def toggle_window(self, window):
+    if window.isVisible():
+      window.hide()
+    else:
+      window.show()
+
+
+  def addForecastWindow(self):
+    self.win_Forecast = ForeCastWindow()
+    self.stackedLayout.addWidget(self.win_Forecast)

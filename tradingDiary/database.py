@@ -122,12 +122,28 @@ class TradeDiaryDB():
 
                           PRIMARY KEY (SYMBOL)
                         );
-                  """
+                  """,
+      "forecast":""" CREATE TABLE IF NOT EXISTS forecast (
+                    SYMBOL TEXT,
+                    DATE TEXT,
+                    H4_DEST TEXT,
+                    DAY_DEST TEXT,
+                    OI_1 TEXT,
+                    OI_2 TEXT,
+                    COT_1 TEXT,
+                    COT_2 TEXT,
+                    H1_DEST TEXT,
+                    COMMENT TEXT,
+                    PRIMARY KEY (SYMBOL)
+      )
+      """
+
     }
     db_check = {
       "oi_reports": "select count(name) from sqlite_master where type = 'table' and name = 'oi_reports'",
       "cot_reports": "select count(name) from sqlite_master where type = 'table' and name = 'cot_reports'",
-      "symbols": "select count(name) from sqlite_master where type = 'table' and name = 'symbols'"
+      "symbols": "select count(name) from sqlite_master where type = 'table' and name = 'symbols'",
+      "forecast": "select count(name) from sqlite_master where type = 'table' and name = 'forecast'"
     }
 
     if self.db.isOpen():

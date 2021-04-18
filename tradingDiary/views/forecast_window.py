@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import (
   QWidget
 )
 
-from tradingDiary.model import NewForecastModel
+from tradingDiary.models.forecast_model import NewForecastModel
 
 
 class ForeCastWindow(QStackedWidget):
@@ -27,10 +27,8 @@ class ForeCastWindow(QStackedWidget):
     self.forecastViewWidget = QWidget()
     self.forecastMainLayout = QHBoxLayout()
     self.forecastViewWidget.setLayout(self.forecastMainLayout)
-
     self.setForecastTable()
     self.setButtonsLayout()
-
     self.addWidget(self.forecastViewWidget)
 
 
@@ -44,14 +42,12 @@ class ForeCastWindow(QStackedWidget):
 
     #directionCombobox = QComboBox()
     #directionCombobox.addItems('UP', 'DOWN', 'FLAT')
-
     #self.forecastTable.setItemDelegateForColumn(2, directionCombobox)
     self.forecastMainLayout.addWidget(self.forecastTable)
 
   
   def setButtonsLayout(self):
     buttonLayout = QVBoxLayout()
-
     self.newRecordButton = QPushButton('Insert New Record')
     self.delRecord = QPushButton('Delete Record')
     self.historyButton = QPushButton('View History')
@@ -72,12 +68,11 @@ class ForeCastWindow(QStackedWidget):
     self.delRecord.clicked.connect(self.forecastModel.deleteRecord)
 
 
-
 if __name__ == "__main__":
   from PyQt5.QtWidgets import QApplication
   import sys
     
-  from ..model import NewForecastModel
+  from tradingDiary.models.forecast_model import NewForecastModel
   app = QApplication(sys.argv)
   win = ForeCastWindow()
   win.show()

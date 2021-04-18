@@ -3,7 +3,8 @@ import sys
 import datetime
 from tradingDiary import db
 #from . import db, parse_report, download_cme
-from . import database, parse_report, download_cme
+from tradingDiary.db import database
+from tradingDiary.parsing import parse_report, download_cme
 import config
 
 

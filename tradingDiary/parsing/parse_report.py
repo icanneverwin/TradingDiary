@@ -1,7 +1,7 @@
 from xlrd import open_workbook
 import os
 import re
-from .download_cme import preliminary_check
+from tradingDiary.parsing.download_cme import preliminary_check
 import config
 
 def get_date(filepath: str) -> str:
